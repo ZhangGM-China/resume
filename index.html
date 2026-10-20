@@ -3,1146 +3,945 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>章光敏 - 产品经理</title>
+  <title>章光敏 · AI 产品经理 / Agent 工程师</title>
+  <meta name="description" content="章光敏，9 年产品经验，AI 产品经理 / Agent 工程师，上海。">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --paper: #f5f4ef;
+      --sheet: #ffffff;
+      --ink: #1a1a1a;
+      --ink-2: #4a4a48;
+      --ink-3: #8a8a86;
+      --line: #e6e4dc;
+      --line-2: #efede6;
+      --accent: #0f6e5c;
+      --accent-soft: #e8f2ef;
+      --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
     }
 
-    :root {
-      --bg-primary: #f8fafc;
-      --bg-card: #ffffff;
-      --color-primary: #3b82f6;
-      --color-secondary: #8b5cf6;
-      --color-accent: #06b6d4;
-      --color-highlight: #f59e0b;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --text-muted: #94a3b8;
-      --border-color: #e2e8f0;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg-primary);
-      background-image:
-        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
-      color: var(--text-primary);
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 40px 20px;
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
     }
 
-    .resume-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    strong { font-weight: 600; color: var(--ink); }
 
-    /* 左侧边栏 */
-    .sidebar {
-      width: 280px;
-      flex-shrink: 0;
+    /* 顶部导航 */
+    .topbar {
       position: sticky;
-      top: 40px;
+      top: 0;
+      z-index: 10;
+      background: rgba(245, 244, 239, 0.88);
+      backdrop-filter: saturate(160%) blur(10px);
+      -webkit-backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .sidebar-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    .topbar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
-    .sidebar-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
+    .topbar-name { font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+    .topbar nav {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .topbar nav::-webkit-scrollbar { display: none; }
+
+    .topbar nav a {
+      color: var(--ink-2);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .topbar nav a:hover { color: var(--ink); text-decoration: none; }
+
+    .print-btn {
+      font: inherit;
+      font-size: 12px;
+      color: var(--ink);
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .print-btn:hover { border-color: var(--ink-3); }
+
+    /* 纸面 */
+    .sheet {
+      max-width: 960px;
+      margin: 32px auto 64px;
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 64px 72px;
     }
 
-    /* 头像区域 */
-    .avatar-section {
-      text-align: center;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border-color);
+    /* 头部 */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .hero .role {
+      margin-top: 8px;
+      font-size: 18px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 13px;
+      color: var(--ink-2);
+    }
+
+    .motto {
+      margin-top: 24px;
+      padding-left: 14px;
+      border-left: 2px solid var(--accent);
+      color: var(--ink-2);
+      font-size: 14px;
+      max-width: 600px;
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
+      width: 112px;
+      height: 112px;
+      border-radius: 4px;
       object-fit: cover;
-      margin: 0 auto 16px;
+      border: 1px solid var(--line);
+    }
+
+    /* 数据条 */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      padding: 24px 0 24px 20px;
+      border-left: 1px solid var(--line-2);
+    }
+    .metric:first-child { padding-left: 0; border-left: none; }
+
+    .metric b {
       display: block;
-      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
-      border: 3px solid #fff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
+    .metric b small { font-size: 14px; color: var(--ink-3); font-weight: 400; margin: 0 2px; }
+    .metric b i { font-style: normal; font-size: 18px; color: var(--ink-3); margin: 0 4px; position: relative; top: -2px; }
+    .metric span { font-size: 12px; color: var(--ink-3); }
 
-    .avatar:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
-    }
+    /* 通用分区 */
+    section { padding-top: 48px; }
 
-    .name {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-
-    .job-title {
-      font-size: 14px;
-      color: var(--color-primary);
-      font-weight: 600;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 4px 12px;
-      border-radius: 20px;
-      display: inline-block;
-    }
-
-    .meta-info {
-      font-size: 12px;
-      color: var(--text-secondary);
+    .sec-head {
       display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .meta-info span {
-      background: var(--bg-primary);
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
-
-    /* 联系信息 */
-    .contact-section {
+      align-items: baseline;
+      gap: 12px;
       margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border-color);
     }
-
-    .section-title {
+    .sec-head h2 { font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
+    .sec-head .en {
+      font-family: var(--mono);
       font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
+      color: var(--ink-3);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
-
-    .section-title::after {
-      content: '';
+    .sec-head::after {
+      content: "";
       flex: 1;
       height: 1px;
-      background: var(--border-color);
+      background: var(--line);
+      align-self: center;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    .sec-head .sec-line { flex: 1; height: 1px; background: var(--line); align-self: center; }
+    .sec-head.has-action::after { content: none; }
+    .expand-btn {
+      font: inherit;
+      font-size: 12px;
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 2px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      align-self: center;
+      transition: border-color .15s ease, background-color .15s ease;
+    }
+    .expand-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+    /* 核心优势 */
+    .strengths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 48px;
+    }
+
+    .strength-group h3 {
       font-size: 13px;
-      color: var(--text-secondary);
-      transition: color 0.2s ease;
-    }
-
-    .contact-item:hover {
-      color: var(--color-primary);
-    }
-
-    .contact-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-
-    .contact-item:hover .contact-icon {
-      transform: scale(1.1);
-    }
-
-    /* 教育背景 */
-    .education-section {
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .education-item {
-      margin-bottom: 14px;
-      padding-left: 12px;
-      border-left: 2px solid var(--color-primary);
-    }
-
-    .education-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .education-info h4 {
-      font-size: 14px;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .strength-list { list-style: none; }
+    .strength-list li {
+      padding: 11px 0;
+      border-top: 1px solid var(--line-2);
+    }
+    .strength-list li:first-child { border-top: none; padding-top: 0; }
+    .strength-list b {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ink);
       margin-bottom: 2px;
     }
+    .strength-list span { color: var(--ink-2); }
 
-    .education-info p {
+    .strength-note {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-2);
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--ink-3);
     }
 
-    .education-time {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
+    /* 左右两列按行对齐，分隔线保持同一水平 */
+    @media screen and (min-width: 861px) {
+      @supports (grid-template-rows: subgrid) {
+        .strengths { grid-template-rows: auto repeat(3, auto); row-gap: 0; }
+        .strength-group { display: grid; grid-row: span 4; grid-template-rows: subgrid; }
+        .strength-list { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+      }
     }
 
-    /* 技能标签 */
-    .skills-section .section-title {
-      margin-bottom: 14px;
-    }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .skill-tag {
-      padding: 6px 12px;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
-      border: 1px solid rgba(59, 130, 246, 0.15);
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--color-primary);
-      transition: all 0.2s ease;
-      cursor: default;
-    }
-
-    .skill-tag:hover {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-      transform: translateY(-1px);
-    }
-
-    /* 右侧主内容 */
-    .main-content {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .content-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-    }
-
-    .content-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .content-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .content-title::before {
-      content: '';
-      width: 4px;
-      height: 22px;
-      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-      border-radius: 2px;
-    }
-
-    /* 关于我 - 自我评价 */
-    .about-section {
-      background: linear-gradient(135deg, #f8faff 0%, #faf8ff 100%);
-      border: 1px solid rgba(59, 130, 246, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-section::before {
-      content: '"';
-      position: absolute;
-      top: -20px;
-      right: 20px;
-      font-size: 120px;
-      font-family: Georgia, serif;
-      color: rgba(59, 130, 246, 0.05);
-      line-height: 1;
-    }
-
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .about-tagline {
-      font-size: 15px;
-      color: var(--text-primary);
-      font-weight: 500;
-      line-height: 1.6;
-    }
-
-    .about-highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .highlight-chip {
-      padding: 6px 14px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-      color: #fff;
-      font-size: 12px;
-      font-weight: 500;
-      border-radius: 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* 个人优势 */
-    .advantages-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .advantage-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      padding: 12px 14px;
-      background: var(--bg-primary);
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .advantage-item:hover {
-      border-color: rgba(59, 130, 246, 0.2);
-      transform: translateX(4px);
-    }
-
-    .advantage-item .num {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .highlight {
-      color: var(--color-primary);
-      font-weight: 600;
-    }
-
-    /* 工作经历时间线 */
-    .timeline {
-      position: relative;
-      padding-left: 28px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 10px;
-      bottom: 10px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-      border-radius: 1px;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 28px;
-    }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -23px;
-      top: 6px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 3px solid var(--color-primary);
-      z-index: 1;
-      transition: transform 0.2s ease;
-    }
-
-    .timeline-item:hover .timeline-dot {
-      transform: scale(1.3);
-      background: var(--color-primary);
-    }
-
-    .timeline-item:last-child .timeline-dot {
-      border-color: var(--color-secondary);
-    }
-
-    .timeline-item:last-child:hover .timeline-dot {
-      background: var(--color-secondary);
-    }
-
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .company-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .time-range {
-      font-size: 11px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-      padding: 5px 12px;
-      border-radius: 12px;
-      font-weight: 500;
-    }
-
-    .job-position {
-      font-size: 13px;
-      color: var(--color-primary);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .job-section-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      margin-top: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .job-achievements {
-      list-style: none;
-    }
-
-    .job-achievements li {
+    .bullets { list-style: none; }
+    .bullets li {
       position: relative;
       padding-left: 16px;
+      color: var(--ink-2);
       margin-bottom: 6px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      transition: color 0.2s ease;
     }
-
-    .job-achievements li:hover {
-      color: var(--text-primary);
-    }
-
-    .job-achievements li a {
-      color: var(--color-primary);
-      text-decoration: none;
-      word-break: break-all;
-      transition: opacity 0.2s ease;
-    }
-
-    .job-achievements li a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    .job-achievements li::before {
-      content: '';
+    .bullets li::before {
+      content: "";
       position: absolute;
-      left: 0;
-      top: 8px;
+      left: 2px;
+      top: 0.78em;
       width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      height: 1px;
+      background: var(--ink-3);
     }
 
-    /* 项目经历 */
-    .project-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    .tool-rows { display: grid; gap: 10px; margin-top: 28px; }
+    .tool-row {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+      align-items: baseline;
     }
-
-    .project-item {
-      padding: 16px;
-      background: var(--bg-primary);
-      border-radius: var(--radius-md);
-      border-left: 4px solid;
-      border-image: linear-gradient(180deg, var(--color-primary), var(--color-secondary)) 1;
-      transition: all 0.2s ease;
-    }
-
-    .project-item:hover {
-      transform: translateX(4px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .project-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .project-time {
-      font-size: 11px;
-      color: var(--text-muted);
-      background: var(--bg-card);
-      padding: 3px 8px;
-      border-radius: 8px;
-    }
-
-    .project-role {
+    .tool-row > span { font-size: 12px; color: var(--ink-3); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
       font-size: 12px;
-      color: var(--color-primary);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .project-desc {
-      font-size: 12px;
-      color: var(--text-secondary);
       line-height: 1.6;
+      padding: 1px 8px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      color: var(--ink-2);
+      background: #fbfbf9;
     }
 
-    .project-link {
-      font-size: 11px;
-      color: var(--color-primary);
-      margin-top: 8px;
+    /* 工作经历 */
+    .job {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line-2);
+    }
+    .job:first-of-type { border-top: none; padding-top: 0; }
+
+    .time {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      padding-top: 3px;
+    }
+
+    .job-head {
       display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 12px;
+      margin-bottom: 8px;
+    }
+    .job-head h3 { font-size: 16px; font-weight: 600; }
+    .job-head .title { font-size: 13px; color: var(--accent); font-weight: 500; }
+    .job-head .note { font-size: 12px; color: var(--ink-3); }
+
+    /* 重点项目 */
+    .project {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      break-inside: avoid;
+    }
+
+    .project-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4px 16px;
+      margin-bottom: 4px;
+    }
+    .project-head h3 { font-size: 17px; font-weight: 600; }
+    .project-head .when { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+    .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; justify-content: flex-end; }
+    .action-link {
+      display: inline-flex;
       align-items: center;
       gap: 4px;
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 2px 10px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--accent);
+      background: var(--surface-subtle);
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+      white-space: nowrap;
     }
-
-    .project-link a {
-      color: var(--color-primary);
+    .action-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
       text-decoration: none;
-      word-break: break-all;
-      transition: opacity 0.2s ease;
     }
+    .action-link .go { font-size: 10px; opacity: .75; }
+    .project-role { font-size: 13px; color: var(--accent); margin-bottom: 18px; }
 
-    .project-link a:hover {
-      opacity: 0.7;
-      text-decoration: underline;
+    .project dl {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 10px 16px;
     }
-
-    .link-icon {
-      opacity: 0.6;
+    .project dt {
+      font-size: 12px;
+      color: var(--ink-3);
+      padding-top: 2px;
     }
+    .project dd { color: var(--ink-2); }
+    .project dd .bullets li { margin-bottom: 4px; }
 
-    /* 更多成果展示 */
-    .portfolio-section {
-      background: linear-gradient(135deg, #f8faff 0%, #faf8ff 100%);
-      border: 1px solid rgba(59, 130, 246, 0.1);
-    }
-
-    .portfolio-grid {
+    .result {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: var(--accent-soft);
+      border-radius: 3px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .portfolio-item {
-      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 14px;
-      padding: 16px;
-      background: var(--bg-card);
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid var(--border-color);
-      transition: all 0.25s ease;
+      gap: 8px 28px;
     }
-
-    .portfolio-item:hover {
-      border-color: var(--color-primary);
-      transform: translateX(6px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .portfolio-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    .result .kpi {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .result .kpi b {
+      font-family: var(--mono);
       font-size: 20px;
-      flex-shrink: 0;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.02em;
     }
+    .result .kpi span { font-size: 12px; color: var(--ink-2); }
+    .result p { flex: 1 1 260px; font-size: 13px; color: var(--ink-2); }
 
-    .portfolio-info {
-      flex: 1;
+    /* 其他 AI 实践 */
+    .practice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-
-    .portfolio-info h4 {
+    .practice-item {
+      padding: 18px 20px;
+      border: 1px solid var(--line-2);
+      border-radius: 4px;
+      background: #fcfcfa;
+      break-inside: avoid;
+    }
+    .practice-item h3 {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
     }
+    .practice-item h3 small { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 400; white-space: nowrap; }
+    .practice-item p { color: var(--ink-2); font-size: 13px; }
+    .practice-item .link { margin-top: 8px; font-size: 12px; }
 
-    .portfolio-info p {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
+    /* Relevant links live with projects; only collections remain at the bottom. */
+    [hidden] { display: none !important; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+    button { font-family: inherit; }
+    .skip-link { position: fixed; top: -60px; left: 16px; z-index: 20; background: var(--ink); color: white; padding: 8px 12px; }
+    .skip-link:focus { top: 10px; }
+    .topbar nav a { position: relative; padding: 14px 0; }
+    .topbar nav a[aria-current="location"] { color: var(--accent); box-shadow: inset 0 -2px var(--accent); }
+    .metric b.capability { font-family: var(--font); font-size: 21px; line-height: 1.5; letter-spacing: -.03em; font-weight: 500; }
+    .metric > span { display: block; margin-top: 4px; }
+    .contact-action { display: inline-flex; align-items: center; gap: 6px; }
+    .copy-btn { color: var(--ink-3); background: none; border: 0; border-bottom: 1px dotted var(--line); cursor: pointer; font-size: 10px; padding: 2px; }
+    .copy-btn:hover { color: var(--accent); }
+    .copy-status { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--ink); color: white; border-radius: 4px; font-size: 13px; padding: 9px 16px; z-index: 30; max-width: calc(100% - 32px); text-align: center; pointer-events: none; }
+    .copy-status:empty { display: none; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 8px 16px; padding-top: 14px; margin-top: 16px; border-top: 1px solid var(--line-2); font-size: 12px; }
+    .project-links a { display: inline-block; padding: 2px 0; }
+    .practice-item .project-links { padding-top: 10px; margin-top: 10px; gap: 6px 12px; }
+    .practice-item .access-hint { font-size: 11px; color: var(--ink-3); margin-top: 8px; }
+    .practice-item h3 { flex-wrap: wrap; gap: 2px 12px; }
+    .practice-item .link a { overflow-wrap: anywhere; }
+    .collections { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+    .collection-card { display: flex; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); transition: background .15s ease, border-color .15s ease; }
+    .collection-card:hover { background: var(--accent-soft); border-color: #accbc1; text-decoration: none; }
+    .collection-type { font-family: var(--mono); font-size: 9px; color: var(--ink-3); letter-spacing: .04em; }
+    .collection-card h3 { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; margin: 12px 0 8px; font-weight: 600; }
+    .collection-card h3 span { color: var(--accent); font-weight: 400; }
+    .collection-card p { color: var(--ink-2); font-size: 12px; flex: 1; }
+    .collection-action { display: block; margin-top: 18px; font-size: 12px; color: var(--accent); }
 
-    .portfolio-arrow {
-      font-size: 18px;
-      color: var(--color-primary);
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.25s ease;
-    }
 
-    .portfolio-item:hover .portfolio-arrow {
-      opacity: 1;
-      transform: translateX(0);
+    /* 教育 */
+    .edu { display: grid; gap: 8px; }
+    .edu-item {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      gap: 24px;
+      align-items: baseline;
     }
+    .edu-item .time { padding-top: 0; }
+    .edu-item b { font-weight: 600; margin-right: 12px; }
+    .edu-item span { color: var(--ink-2); }
+
 
     /* 响应式 */
-    @media (max-width: 900px) {
-      .resume-container {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        position: static;
-      }
+    @media screen and (max-width: 860px) {
+      .sheet { margin: 0; border: none; border-radius: 0; padding: 40px 24px; }
+      .topbar-inner { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .avatar { order: -1; width: 88px; height: 88px; }
+      .hero h1 { font-size: 32px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metric:nth-child(3) { padding-left: 0; border-left: none; }
+      .metric:nth-child(n+3) { border-top: 1px solid var(--line-2); }
+      .strengths, .practice, .collections { grid-template-columns: 1fr; }
+      .job, .edu-item { grid-template-columns: 1fr; gap: 4px; }
+      .project { padding: 22px 20px; }
+      .project dl { grid-template-columns: 1fr; gap: 2px; }
+      .project dd { margin-bottom: 10px; }
     }
 
-    @media (max-width: 500px) {
-      body {
-        padding: 20px 12px;
-      }
-
-      .sidebar-card,
-      .content-card {
-        padding: 20px;
-      }
-
-      .avatar {
-        width: 80px;
-        height: 80px;
-      }
-
-      .name {
-        font-size: 20px;
-      }
-
-      .timeline {
-        padding-left: 24px;
-      }
-
-      .timeline::before {
-        left: 5px;
-      }
-
-      .timeline-dot {
-        left: -20px;
-        width: 12px;
-        height: 12px;
-      }
+    @media screen and (max-width: 520px) {
+      .topbar-name { display: none; }
+      .topbar-inner { gap: 12px; }
+      .topbar nav { min-width: 0; gap: 16px; }
+      .print-btn { padding: 5px 8px; }
     }
 
-    /* 打印样式 */
+    /* 打印 / 导出 PDF */
+    @page { size: A4; margin: 14mm; }
+
     @media print {
-      body {
-        background: white;
-        padding: 0;
-      }
-
-      .resume-container {
-        max-width: 100%;
-      }
-
-      .content-card,
-      .sidebar-card {
-        box-shadow: none;
-        border: 1px solid var(--border-color);
-        break-inside: avoid;
-      }
-
-      .content-card:hover,
-      .sidebar-card:hover {
-        transform: none;
-      }
+      body { background: #fff; font-size: 10pt; line-height: 1.6; }
+      .topbar { display: none; }
+      .sheet { margin: 0; padding: 0; border: none; max-width: none; }
+      section { padding-top: 22pt; }
+      .sec-head { margin-bottom: 12pt; break-after: avoid; }
+      .hero, .metrics, .strength-group, .tool-rows, .edu-item { break-inside: avoid; }
+      .hero { padding-bottom: 18pt; }
+      .metric { padding-top: 12pt; padding-bottom: 12pt; }
+      .project { padding: 14pt 16pt; margin-bottom: 10pt; }
+      .job { padding: 10pt 0; break-inside: avoid; }
+      .result, .tag, .practice-item, .action-link { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+    @media print {
+      .copy-btn, .copy-status, .skip-link, .expand-btn { display: none !important; }
+      #practice-list [hidden] { display: block !important; }
+      .project-links { font-size: 8pt; margin-top: 10pt; padding-top: 8pt; }
+      .collection-card { break-inside: avoid; padding: 12pt; }
+      .collections { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .metric b.capability { font-size: 15pt; }
     }
 
-    /* 加载动画 */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .content-card {
-      animation: fadeInUp 0.5s ease forwards;
-    }
-
-    .content-card:nth-child(1) { animation-delay: 0.1s; }
-    .content-card:nth-child(2) { animation-delay: 0.2s; }
-    .content-card:nth-child(3) { animation-delay: 0.3s; }
-    .content-card:nth-child(4) { animation-delay: 0.4s; }
-
-    .sidebar-card {
-      animation: fadeInUp 0.5s ease forwards;
-      animation-delay: 0.05s;
-    }
   </style>
 </head>
 <body>
-  <div class="resume-container">
-    <!-- 左侧边栏 -->
-    <aside class="sidebar">
-      <div class="sidebar-card">
-        <!-- 头像区域 -->
-        <div class="avatar-section">
-          <img src="./头像.png" alt="章光敏" class="avatar">
-          <h1 class="name">章光敏</h1>
-          <p class="job-title">产品经理</p>
-          <div class="meta-info">
-            <span>男</span>
-            <span>30岁</span>
-            <span>9年+经验</span>
-            <span>上海</span>
-          </div>
-        </div>
+  <a class="skip-link" href="#strengths">跳转到简历正文</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="topbar-name" href="#top">章光敏</a>
+      <nav aria-label="简历目录">
+        <a href="#strengths">核心优势</a>
+        <a href="#experience">工作经历</a>
+        <a href="#projects">重点项目</a>
+        <a href="#practice">其他项目</a>
+        <a href="#works">作品合集</a>
+        <a href="#education">教育经历</a>
+      </nav>
+      <button class="print-btn" type="button" id="print-resume">导出 PDF</button>
+    </div>
+  </header>
 
-        <!-- 期望工作 -->
-        <div class="contact-section">
-          <h3 class="section-title">求职意向</h3>
-          <div class="contact-item">
-            <span class="contact-icon">💼</span>
-            <span>产品经理</span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">💰</span>
-            <span>22-27K</span>
-          </div>
+  <main class="sheet" id="top">
+    <div class="hero">
+      <div>
+        <h1>章光敏</h1>
+        <p class="role">AI 产品经理 / Agent 工程师</p>
+        <div class="contact">
+          <span>上海</span>
+          <span class="contact-action"><a href="tel:15026592372">150 2659 2372</a><button type="button" class="copy-btn" data-copy="15026592372" aria-label="复制手机号" hidden>复制</button></span>
+          <span class="contact-action"><a href="mailto:572296872@qq.com">572296872@qq.com</a><button type="button" class="copy-btn" data-copy="572296872@qq.com" aria-label="复制邮箱" hidden>复制</button></span>
+          <a href="https://github.com/ZhangGM-China" target="_blank" rel="noopener">github.com/ZhangGM-China</a>
         </div>
+        <p class="motto">善于用系统思维拆解问题。每次接到需求，我总是习惯先往后退一步，然后问：对于整个系统而言，这个需求到底解决了什么问题。</p>
+      </div>
+      <img class="avatar" src="./头像.png" alt="章光敏">
+    </div>
 
-        <!-- 联系信息 -->
-        <div class="contact-section">
-          <h3 class="section-title">联系方式</h3>
-          <div class="contact-item">
-            <span class="contact-icon">📱</span>
-            <span>15026592372</span>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">✉️</span>
-            <span>572296872@qq.com</span>
-          </div>
+    <div class="metrics">
+      <div class="metric"><b>9<small>年</small></b><span>产品经验，覆盖 SaaS / 医疗 / 零售</span></div>
+      <div class="metric"><b>30<small>人+</small></b><span>团队管理经验</span></div>
+      <div class="metric"><b class="capability">Vibe Coding</b><span>能 Follow 产研全流程</span></div>
+      <div class="metric"><b class="capability">Agent 开发</b><span>清楚 AI 能力边界</span></div>
+    </div>
+
+    <section id="strengths">
+      <div class="sec-head"><h2>核心优势</h2><span class="en">Strengths</span></div>
+      <div class="strengths">
+        <div class="strength-group">
+          <h3>产品与业务</h3>
+          <ul class="strength-list">
+            <li><b>甲方 / 渠道方对接经验</b><span>对接三甲医院、百联股份、银行、保司与运营商等甲方及渠道，负责从需求澄清、方案设计到上线验收的完整交付。</span></li>
+            <li><b>学习能力强</b><span>接手医疗信息化项目后，1 个月内完成行业调研与业务建模，独立支撑整条产品线。</span></li>
+            <li><b>数据驱动</b><span>善用 Python 与 SQL，以用户与业务数据定位问题、验证方案，驱动产品迭代。</span></li>
+          </ul>
         </div>
-
-        <!-- 教育背景 -->
-        <div class="education-section">
-          <h3 class="section-title">教育背景</h3>
-          <div class="education-item">
-            <div class="education-info">
-              <h4>江苏开放大学</h4>
-              <p>本科 · 行政管理</p>
-              <p class="education-time">2022 - 2025</p>
-            </div>
-          </div>
-          <div class="education-item">
-            <div class="education-info">
-              <h4>上海政法学院</h4>
-              <p>大专 · 公共事务管理</p>
-              <p class="education-time">2014 - 2017</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 技能标签 -->
-        <div class="skills-section">
-          <h3 class="section-title">核心技能</h3>
-          <div class="skills-grid">
-            <span class="skill-tag">AI产品经理</span>
-            <span class="skill-tag">SaaS产品</span>
-            <span class="skill-tag">AIGC平台</span>
-            <span class="skill-tag">医疗信息化</span>
-            <span class="skill-tag">Vibe Coding</span>
-            <span class="skill-tag">Dify/n8n</span>
-            <span class="skill-tag">Figma/Axure</span>
-            <span class="skill-tag">PRD/BRD</span>
-            <span class="skill-tag">SQL/Python</span>
-            <span class="skill-tag">团队管理</span>
-          </div>
+        <div class="strength-group">
+          <h3>AI 与 Agent 工程</h3>
+          <ul class="strength-list">
+            <li><b>Vibe Coding</b><span>以 Codex、PI 为主力工具，独立完成智能运营与 AI 搜索产品从设计、开发、部署到迭代的全流程。</span></li>
+            <li><b>Agent 研发</b><span>基于 LangChain、RAG 构建智能体应用，具备 Prompt、Context、Harness 工程经验，并用 Langfuse 评估效果。</span></li>
+            <li><b>熟悉 AI 基础生态</b><span>有推进传统业务接口 MCP 化、CLI 化，并基于 PI、OpenClaw、Hermes 搭建数字员工的经验。</span></li>
+          </ul>
         </div>
       </div>
-    </aside>
+      <p class="strength-note">WayToAGI 社区资深活跃成员，持续跟进前沿实践并参与分享。</p>
 
-    <!-- 右侧主内容 -->
-    <main class="main-content">
-      <!-- 关于我 -->
-      <div class="content-card about-section">
-        <h2 class="content-title">关于我</h2>
-        <div class="about-content">
-          <p class="about-tagline">
-            逻辑清晰、沟通能力强、结果导向、拥抱变化。AI时代的PM岗位面临很多根本性的改变，这是机遇也是挑战。不能说很懂AI，只能说对AI有一些使用经验和心得，也一直在努力学习AI的路上。
-          </p>
-          <div class="about-highlights">
-            <span class="highlight-chip">🎯 9年产品经验</span>
-            <span class="highlight-chip">🚀 多个0-1项目</span>
-            <span class="highlight-chip">👥 30人+团队管理</span>
-            <span class="highlight-chip">🤖 AI产品专家</span>
-          </div>
+      <div class="tool-rows">
+        <div class="tool-row">
+          <span>AI 框架</span>
+          <div class="tags"><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">MCP</span><span class="tag">Skill / Plugin</span><span class="tag">Langfuse</span><span class="tag">Codex</span><span class="tag">PI</span><span class="tag">OpenClaw</span><span class="tag">Hermes</span></div>
+        </div>
+        <div class="tool-row">
+          <span>低代码平台</span>
+          <div class="tags"><span class="tag">n8n</span><span class="tag">Dify</span><span class="tag">ComfyUI</span></div>
+        </div>
+        <div class="tool-row">
+          <span>产品工具</span>
+          <div class="tags"><span class="tag">Figma</span><span class="tag">Stitch</span><span class="tag">Axure</span><span class="tag">飞书</span><span class="tag">XMind</span><span class="tag">Visio</span></div>
+        </div>
+        <div class="tool-row">
+          <span>开发工具</span>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Git</span><span class="tag">Linear</span><span class="tag">Apifox</span><span class="tag">Postman</span></div>
         </div>
       </div>
+    </section>
 
-      <!-- 个人优势 -->
-      <div class="content-card">
-        <h2 class="content-title">个人优势</h2>
-        <div class="advantages-list">
-          <div class="advantage-item">
-            <span class="num">1</span>
-            <span><span class="highlight">9年产品经验</span>+，负责过医疗信息平台（HIS、ICIS、ECIS）、通讯平台（SMS）、营销自动化平台等 SaaS 产品；也负责过企业官网、商城APP、各类小程序、营销H5的产品设计</span>
+    <section id="experience">
+      <div class="sec-head"><h2>工作经历</h2><span class="en">Experience</span></div>
+
+      <div class="job">
+        <div class="time">2026.04 — 至今</div>
+        <div>
+          <div class="job-head">
+            <h3>适享智慧（上海）科技有限公司</h3>
+            <span class="title">AI 产品经理 / Agent 工程师</span>
           </div>
-          <div class="advantage-item">
-            <span class="num">2</span>
-            <span>带过<span class="highlight">30人+团队</span>，负责过多个项目的<span class="highlight">0-1</span>和从<span class="highlight">1-100</span>生命周期</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">3</span>
-            <span>有丰富的甲方/渠道对接经验，对接过包括各大<span class="highlight">三甲医院</span>、百联股份、银行、保司、运营商</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">4</span>
-            <span>具备快速学习能力，2022年刚接手医疗信息化项目时，对医疗领域完全陌生，花<span class="highlight">1个月</span>左右时间做产调和市调，从0到1了解了医疗信息化的整体框架</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">5</span>
-            <span>精通 Figma、Axure、飞书、Xmind、Visio 等产品工具，能够输出高质量 PRD和BRD</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">6</span>
-            <span>熟悉Python、SQL，具备数据分析的能力，且能站在技术视角进行产品设计和项目管理</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">7</span>
-            <span>精通<span class="highlight">Vibe Coding</span>，目前主力使用Claude Code，也使用过CodeX、Copilot、Antigracity、Cursor、Trae等主流AI开发工具</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">8</span>
-            <span>精通<span class="highlight">AI低代码平台</span>，目前主力使用n8n和Dify搭建Agent/Workflow，对ComfyUI等工作流也同样熟悉</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">9</span>
-            <span>深度使用和研究过OpenClaw、Hermes等Agent，对这些工具的项目架构、能力边界都做过深入拆解</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">10</span>
-            <span>精通<span class="highlight">Prompt Engineering</span>与<span class="highlight">RAG架构</span>，独立搭建过医疗知识库、订单知识库</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">11</span>
-            <span>善于跟进新的工具，最近正在尝试使用stitch重塑产品原型设计的工作流</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">12</span>
-            <span>熟练使用IDEA、Git、Apifox、postman等常用开发工具</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">13</span>
-            <span>目前正在学习Spring、MyBatis等开源框架，强化自身技术力</span>
-          </div>
-          <div class="advantage-item">
-            <span class="num">14</span>
-            <span>WayToAGI、大象AI共学、卡兹克、云舒等的AI社区<span class="highlight">资深活跃成员</span></span>
-          </div>
+          <ul class="bullets">
+            <li>负责 AIOPS 智能运营、LLM Recall（AI 商品搜索引擎）的产品设计与研发，独立完成需求分析、开发验证和产品迭代。</li>
+            <li>围绕零售搜索质量，设计召回补充、准确性治理、商品排序策略及人机职责划分的整体产品业务框架，推动 Agent 评测体系建设。</li>
+            <li>主导 AI 基础设施与 AI 开发流程设计：部署 MCPHub、SkillHub、PluginHub 管理企业 AI 资产，引入 Langfuse、Linear 完善 Agent 开发流程。</li>
+          </ul>
         </div>
       </div>
 
-      <!-- 工作经历 -->
-      <div class="content-card">
-        <h2 class="content-title">工作经历</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-header">
-              <span class="company-name">上海元长信息技术有限公司</span>
-              <span class="time-range">2023.10 - 至今</span>
-            </div>
-            <p class="job-position">产品总监</p>
-            <p class="job-section-title">工作内容</p>
-            <ul class="job-achievements">
-              <li>作为AI产品经理入职，负责公司AIGC平台、APP的产品设计工作，主导开发了大千智言、爻塔AI伴侣、借问排盘（AI算命）等AI产品</li>
-              <li>2024年3月份转而负责医疗信息化平台的产品设计，花了1个月的时间熟悉医疗业务，成为该项目的主要负责人</li>
-              <li>医疗信息化系统初代版本完成后，带队去南昌大学第一附属医院进行项目交付的研发交付工作</li>
-              <li>利用AI能力为医疗信息系统赋能，开发了包括AI辅助诊疗、采集设备数据并由AI自动生成护理记录、AI智能分诊导诊等功能</li>
-            </ul>
-            <p class="job-section-title">项目地址</p>
-            <ul class="job-achievements">
-              <li>元长医疗信息系统：<a href="https://www.gloryis.com/sy" target="_blank">gloryis.com/sy</a></li>
-              <li>大千智言AI平台：<a href="https://daqian.yaotakeji.com/" target="_blank">daqian.yaotakeji.com</a></li>
-              <li>借问排盘APP：各大应用市场搜索「借问」</li>
-            </ul>
-            <p class="job-section-title">原型 & PRD</p>
-            <ul class="job-achievements">
-              <li>重症临床信息系统原型：<a href="https://www.figma.com/design/xsIAvaZkDFkTneQGQ7QgWq/%E9%87%8D%E7%97%87%E4%B8%B4%E5%BA%8A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F?node-id=0-1&t=NEwR4Gjx6BldPX3y-1" target="_blank">Figma链接</a></li>
-              <li>手术麻醉信息系统原型：<a href="https://www.figma.com/design/s6xeguO0NYeMpCawmbk5vj/%E6%89%8B%E6%9C%AF%E9%BA%BB%E9%86%89%E4%B8%B4%E5%BA%8A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F?node-id=0-1&t=Qw3XurnHkFF0yf0k-1" target="_blank">Figma链接</a></li>
-              <li>大千智言原型：<a href="https://www.figma.com/design/IL7sS019KHAxsUDa134MiS/AIGC?node-id=0-1&t=yaRXbQ5iaAwWiIar-1" target="_blank">Figma链接</a></li>
-              <li>其他AI项目原型：<a href="https://www.figma.com/design/QBGgwJLiga6vuY7B65yP5a/%E5%85%B6%E4%BB%96AI%E4%BA%A7%E5%93%81?node-id=0-1&t=hI8RUEqsT0eq10VM-1" target="_blank">Figma链接</a></li>
-              <li>手术麻醉信息系统PRD：<a href="https://my.feishu.cn/docx/Yf7RdLzZKowl4XxbgG9cRGYBnbv?from=from_copylink" target="_blank">飞书文档</a></li>
-            </ul>
+      <div class="job">
+        <div class="time">2023.10 — 2025.10</div>
+        <div>
+          <div class="job-head">
+            <h3>上海元长信息技术有限公司</h3>
+            <span class="title">产品总监</span>
           </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-header">
-              <span class="company-name">上海坤鼎云信息发展有限公司</span>
-              <span class="time-range">2020.10 - 2023.10</span>
-            </div>
-            <p class="job-position">产品总监</p>
-            <p class="job-section-title">工作内容</p>
-            <ul class="job-achievements">
-              <li>主导了云数享（营销自动化SaaS）的产品设计、项目管理和产品运营工作，主要功能包括微信公众号助手、图文直播模块、互动营销（0代码可视化搭建H5）模块</li>
-              <li>负责公司大客户的需求沟通、采集、线上营销活动落地工作，开发了包括百联旗下各商场自营小程序、上海市商委的上海购物App、艾尔建小程序、枫叶小镇小程序等</li>
-              <li>负责和公司业务相关的AI项目技术调研和商业化规划，包括Stable Diffusion的LoRA训练，AI对话/绘画平台开发</li>
-              <li>负责技术团队的管理，带领<span class="highlight">10人+</span>的技术团队，从0-1建立了公司项目管理体系，建立了部门绩效考核制度</li>
-            </ul>
-            <p class="job-section-title">项目地址</p>
-            <ul class="job-achievements">
-              <li>云数享：<a href="https://www.dgshare.com/user/login" target="_blank">dgshare.com</a></li>
-              <li>上海购物APP：各大应用市场搜索【上海购物】</li>
-              <li>百联股份旗下商场小程序：微信搜索任意百联股份旗下商场小程序</li>
-            </ul>
-            <p class="job-section-title">原型 & PRD</p>
-            <ul class="job-achievements">
-              <li>云数享PRD（部分）：<a href="https://my.feishu.cn/docx/GQNNdvMZxoEBFGxAYJ5cQzTGn6c" target="_blank">飞书文档</a></li>
-              <li>云数享受原型（公众号助手模块）：<a href="https://www.figma.com/design/wlnOEDSZKNUAZyDUytgk23/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%8A%A9%E6%89%8B?node-id=0-1&t=8MXKSyKg2th3kiT5-1" target="_blank">Figma链接</a></li>
-            </ul>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-header">
-              <span class="company-name">上海思锐信息技术有限公司</span>
-              <span class="time-range">2018.05 - 2020.10</span>
-            </div>
-            <p class="job-position">产品经理</p>
-            <p class="job-section-title">工作内容</p>
-            <ul class="job-achievements">
-              <li>微信编辑器、问卷网、自助建站、短信平台等产品的需求采集，产出产品原型和PRD，推进产品研发进度</li>
-              <li>负责产品的市场推广，包括网站的SEO、活动的制定和监控、制定产品定价策略和推广策略、从零到一的冷启动</li>
-              <li>用户数据的监测与分析，勾勒用户画像，建立用户模型</li>
-            </ul>
-            <p class="job-section-title">公司官网</p>
-            <ul class="job-achievements">
-              <li><a href="https://www.ihuyi.com/" target="_blank">ihuyi.com</a>（该司工作时期较早，用Axure和Word做产品工作，故工作成果无法展示）</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-header">
-              <span class="company-name">上海共佰克智能科技有限公司（上海永久）</span>
-              <span class="time-range">2017.07 - 2018.04</span>
-            </div>
-            <p class="job-position">产品专员/助理</p>
-            <p class="job-section-title">工作内容</p>
-            <ul class="job-achievements">
-              <li>负责配合产品总监完成永久共享单车管理平台和共佰克app的产品规划、迭代工作，负责产品全生命周期工作</li>
-              <li>协助把控共享单车定位效果和能力的输出</li>
-              <li>负责与运营、UED、开发、算法等岗位的沟通，推动需求落地</li>
-            </ul>
-          </div>
+          <ul class="bullets">
+            <li>以 AI 产品经理身份入职，负责大千智言、爻塔 AI 伴侣、借问排盘等 AIGC 平台及应用的产品设计与研发推进。</li>
+            <li>2024 年 3 月转岗负责医疗信息系统，完成业务调研、需求设计及研发推进，后承担项目主要负责人职责。</li>
+            <li>带队赴江西多家医院交付，协调系统部署、软硬件对接、问题采集和产品培训；推进 AI 辅助诊疗、自动护理记录及智能分诊导诊等功能建设。</li>
+          </ul>
         </div>
       </div>
 
-      <!-- 项目经历 -->
-      <div class="content-card">
-        <h2 class="content-title">项目经历</h2>
-        <div class="project-grid">
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">医疗信息系统（ICIS、ECIS）</span>
-              <span class="project-time">2023.11 - 2025.10</span>
-            </div>
-            <p class="project-role">项目负责人</p>
-            <p class="project-desc">重症医疗信息管理系统是为ICU科室的信息化转型设计的信息系统。手术麻醉信息管理系统是为手术麻醉科室设计的信息化管理系统。负责项目管理和团队管理，去医院采集临床需求，产出原型设计、产品文档撰写、用户手册撰写。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> 项目地址：<a href="http://prev-web-icu.yuanchang.tech/#/login" target="_blank">prev-web-icu.yuanchang.tech</a></p>
+      <div class="job">
+        <div class="time">2020.10 — 2023.10</div>
+        <div>
+          <div class="job-head">
+            <h3>上海坤鼎云信息发展有限公司</h3>
+            <span class="title">产品总监</span>
           </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">Dify搭建的内部工具</span>
-              <span class="project-time">2026.01 - 2026.04</span>
-            </div>
-            <p class="project-role">Agent开发者</p>
-            <p class="project-desc">Dify搭建的AI工具，主要服务医疗信息化的业务场景，包括：快速健康建档、派单策略(住院/门诊)、陪诊候选人沟通&审核、陪诊人员财务审核、招聘信息提取、数据分析等。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> GitHub：<a href="https://github.com/ZhangGM-China/Dfiy_workflow" target="_blank">github.com/ZhangGM-China/Dfiy_workflow</a></p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">DataSphere碳中和AI数据分析系统</span>
-              <span class="project-time">2025.07 - 2025.08</span>
-            </div>
-            <p class="project-role">产品经理 / Agent开发者</p>
-            <p class="project-desc">为上海建科做的碳中和数据分析系统，利用LLM大模型读取各工厂提交的质量检测报告，提取结构化数据与历史数据对比报警。Agent用Dify搭建，配合prompt工程实现自动分析与预警。</p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">云数享营销自动化平台</span>
-              <span class="project-time">2020.10 - 2023.03</span>
-            </div>
-            <p class="project-role">产品经理 / 项目运营</p>
-            <p class="project-desc">营销自动化SaaS平台，主要功能包括微信公众号助手、图文直播模块、互动营销（0代码可视化搭建H5）模块。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> 项目地址：<a href="https://platform.dgshare.com/#/login?redirect=/dashboard" target="_blank">platform.dgshare.com</a></p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">Boss招聘助手</span>
-              <span class="project-time">2026.04</span>
-            </div>
-            <p class="project-role">产品经理</p>
-            <p class="project-desc">Vibe Coding项目，AI+Tampermonkey脚本，帮HR快速定位符合要求的候选人，agent自动和候选人打招呼。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> GitHub：<a href="https://github.com/ZhangGM-China/Boss-Recruitment-Assistant" target="_blank">github.com/ZhangGM-China/Boss-Recruitment-Assistant</a></p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">第二大脑（个人WIKI）</span>
-              <span class="project-time">2026.04</span>
-            </div>
-            <p class="project-role">Agent开发者</p>
-            <p class="project-desc">基于khoj的哲学理念设计的第二大脑Claude Skill，obsidian+claudian有效维护个人知识库wiki，已维护数十篇文章、上百页wiki的知识库。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> GitHub：<a href="https://github.com/ZhangGM-China/Second-Brain" target="_blank">github.com/ZhangGM-China/Second-Brain</a></p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">互亿无线短信平台</span>
-              <span class="project-time">2018.04 - 2020.10</span>
-            </div>
-            <p class="project-role">产品经理</p>
-            <p class="project-desc">负责短信平台的迭代和维护，产出迭代需求文档和原型图，对网站进行SEO优化，接入过本机号码校验、5G短信等新业务。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> 项目地址：<a href="https://www.ihuyi.com/" target="_blank">ihuyi.com</a></p>
-          </div>
-          <div class="project-item">
-            <div class="project-header">
-              <span class="project-name">永久出行共享单车管理平台/用户端APP</span>
-              <span class="project-time">2017.10 - 2018.04</span>
-            </div>
-            <p class="project-role">产品专员</p>
-            <p class="project-desc">负责永久共享单车管理平台和共佰克app的产品规划、迭代工作，收集并分析用户意见，产出文档和原型图。</p>
-            <p class="project-link"><span class="link-icon">🔗</span> 项目地址：<a href="https://www.mandian-future.com/" target="_blank">mandian-future.com</a></p>
-          </div>
+          <ul class="bullets">
+            <li>主导云数享营销自动化 SaaS 的产品设计、项目管理与运营，将微信公众号管理、互动营销 H5、图文直播等重复业务沉淀为可复用产品。</li>
+            <li>负责百联股份及旗下商场、上海市商委、艾尔建等客户的线上营销活动与产品交付，推进上海购物 App 及多个商场 / 品牌小程序落地。</li>
+            <li>开展 Stable Diffusion LoRA 训练、AI 对话与绘画平台调研，为内容运营搭建 AI 辅助生产工作流。</li>
+            <li>管理 <strong>10 余人</strong>技术团队，建立项目管理与绩效考核机制。</li>
+          </ul>
         </div>
       </div>
 
-      <!-- 更多成果展示 -->
-      <div class="content-card portfolio-section">
-        <h2 class="content-title">更多成果展示</h2>
-        <div class="portfolio-grid">
-          <a href="https://my.feishu.cn/drive/folder/JwGEfBJ6sli4lFd1R00cniXWnxh" target="_blank" class="portfolio-item">
-            <div class="portfolio-icon">📋</div>
-            <div class="portfolio-info">
-              <h4>PRD / BRD / 项目管理文档</h4>
-              <p>产品需求文档、商业需求文档、市调/产调报告、项目管理成果</p>
-            </div>
-            <span class="portfolio-arrow">→</span>
-          </a>
-          <a href="https://www.figma.com/files/project/50765473" target="_blank" class="portfolio-item">
-            <div class="portfolio-icon">💻</div>
-            <div class="portfolio-info">
-              <h4>SaaS 产品原型</h4>
-              <p>后台管理系统、营销自动化平台、CRM 等 SaaS 产品原型</p>
-            </div>
-            <span class="portfolio-arrow">→</span>
-          </a>
-          <a href="https://www.figma.com/files/project/71820923" target="_blank" class="portfolio-item">
-            <div class="portfolio-icon">📱</div>
-            <div class="portfolio-info">
-              <h4>移动端项目原型</h4>
-              <p>APP、小程序、H5 等移动端产品原型</p>
-            </div>
-            <span class="portfolio-arrow">→</span>
-          </a>
+      <div class="job">
+        <div class="time">2018.04 — 2020.10</div>
+        <div>
+          <div class="job-head">
+            <h3>上海思锐信息技术有限公司</h3>
+            <span class="title">产品经理</span>
+          </div>
+          <ul class="bullets">
+            <li>负责短信平台、微信编辑器、问卷及自助建站等产品的需求采集、原型和 PRD，推进研发与版本迭代。</li>
+            <li>结合用户与网站数据开展 SEO、产品定价和推广，参与供应商对接与商务支撑，推进本机号码校验、5G 短信等业务接入。</li>
+          </ul>
         </div>
       </div>
-    </main>
-  </div>
+
+      <div class="job">
+        <div class="time">2017.07 — 2018.04</div>
+        <div>
+          <div class="job-head">
+            <h3>上海共佰克智能科技有限公司（上海永久）</h3>
+            <span class="title">产品专员 / 助理（实习）</span>
+          </div>
+          <ul class="bullets">
+            <li>协助完成共享单车管理平台和用户端 App 的规划与迭代，收集用户反馈、输出需求与原型，协调运营、设计、开发和算法团队推动落地。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec-head"><h2>重点项目</h2><span class="en">Projects</span></div>
+
+      <article class="project" id="project-1">
+        <div class="project-head">
+          <h3>AIOPS · 零售搜索智能运营平台</h3>
+          <div class="project-actions"><a class="action-link" href="https://soa.applesay.tech/ops-dashboard" target="_blank" rel="noopener noreferrer">查看产品 <span class="go" aria-hidden="true">↗</span></a></div>
+        </div>
+        <p class="project-role">AI 产品经理 / Agent 工程师 · 负责产品设计与项目研发，推进需求梳理、开发验证和上线迭代</p>
+        <dl>
+          <dt>背景</dt>
+          <dd>面向 Zara、H&amp;M、RL 等品牌，解决现有搜索引擎商品漏召回、结果不准确、排序不合理等问题，降低人工排查与调整成本。</dd>
+          <dt>方案</dt>
+          <dd><ul class="bullets">
+              <li>结合搜索词、商品图文、品牌调性与世界事实，识别召回率、准确率与排序问题。</li>
+              <li>设计治理 Agent，结合知识图谱与业务工具分析原因，完成漏召回补充、错误商品纠正、排序优化等智能运营动作。</li>
+              <li>建设统一运营工作台，以系统思维定位问题、审核策略，并完成受控执行和效果验证。</li>
+            </ul></dd>
+        </dl>
+        <div class="result">
+          <div class="kpi"><b>84% → 98%</b><span>召回相关性准确率</span></div>
+          <div class="kpi"><b>+14pp</b><span>提升幅度</span></div>
+          <p>相关性检测覆盖上述品牌，阶段性日检规模约 900 余个 Query。</p>
+        </div>
+      </article>
+
+      <article class="project" id="project-2">
+        <div class="project-head">
+          <h3>LLM Recall · AI 商品搜索引擎</h3>
+        </div>
+        <p class="project-role">AI 产品经理 / Agent 工程师 · 负责搜索引擎产品设计与研发，构建知识图谱维护、商品打标、意图分流及智能召回流程</p>
+        <dl>
+          <dt>背景</dt>
+          <dd>零售搜索需要理解品牌语境和用户意图，降低商品漏召回与误召回。探索大模型语义搜索方案，并建立评测机制衡量召回效果与使用成本。</dd>
+          <dt>方案</dt>
+          <dd><ul class="bullets">
+              <li><strong>知识图谱构建与维护：</strong>从每日增量 Query 和新上架商品中提取新标签，维护品牌知识图谱；每日更新存量标签、纠正错误关系，保障知识质量。</li>
+              <li><strong>双路径商品打标：</strong>大模型依据品牌知识图谱为商品打标；同时通过 RAG 检索候选商品，再由 JEV 判断相关性，为符合条件的商品补充标签。</li>
+              <li><strong>AI 意图分流：</strong>用 JEV 区分精准与开放意图；精准搜索走标签召回，开放搜索在标签召回基础上触发 AI Overviews，通过对话明确需求后启动大模型召回。</li>
+              <li><strong>AI 商品召回：</strong>先经 RAG 与图关系召回筛选候选，再结合 Query、图谱知识、品牌调性、季节天气及社媒趋势，由大模型完成最终选择与排序，控制全量匹配成本。</li>
+            </ul></dd>
+        </dl>
+        <div class="result">
+          <div class="kpi"><b>82% → 93%</b><span>商品召回率</span></div>
+          <div class="kpi"><b>+11pp</b><span>提升幅度</span></div>
+          <p>基于 Langfuse 评估体系量化验证。</p>
+        </div>
+      </article>
+
+      <article class="project" id="project-3">
+        <div class="project-head">
+          <h3>医疗信息系统（ICIS / ECIS）</h3>
+          <div class="project-actions">
+            <a class="action-link" href="https://www.gloryis.com/sy" target="_blank" rel="noopener noreferrer">查看介绍 <span class="go" aria-hidden="true">↗</span></a>
+            <a class="action-link" href="https://www.figma.com/design/xsIAvaZkDFkTneQGQ7QgWq/%E9%87%8D%E7%97%87%E4%B8%B4%E5%BA%8A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F?node-id=0-1&amp;t=NEwR4Gjx6BldPX3y-1" target="_blank" rel="noopener noreferrer">查看重症原型 <span class="go" aria-hidden="true">↗</span></a>
+            <a class="action-link" href="https://www.figma.com/design/s6xeguO0NYeMpCawmbk5vj/%E6%89%8B%E6%9C%AF%E9%BA%BB%E9%86%89%E4%B8%B4%E5%BA%8A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F?node-id=0-1&amp;t=Qw3XurnHkFF0yf0k-1" target="_blank" rel="noopener noreferrer">查看麻醉原型 <span class="go" aria-hidden="true">↗</span></a>
+            <a class="action-link" href="https://my.feishu.cn/docx/Yf7RdLzZKowl4XxbgG9cRGYBnbv?from=from_copylink" target="_blank" rel="noopener noreferrer">查看 PRD <span class="go" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <p class="project-role">产品经理 / 项目负责人 · 负责项目管理、临床需求调研、产品设计和项目推进，带队完成医院现场交付与培训</p>
+        <dl>
+          <dt>背景</dt>
+          <dd>面向重症患者全程监护和手术患者围术期管理，整合连续监测与诊疗数据，规范诊疗护理流程，支撑病情评估、医护协同和医疗质量控制。</dd>
+          <dt>方案</dt>
+          <dd><ul class="bullets">
+              <li>进入科室采集临床需求，梳理业务流程，输出原型、PRD 和用户手册，协调研发推进功能开发。</li>
+              <li>对接医院信息科与医护人员，推进系统部署、软硬件对接及使用培训，根据现场反馈持续迭代。</li>
+              <li>推进 AI 辅助诊疗、基于设备数据生成护理记录及智能分诊导诊，将 AI 能力融入临床流程。</li>
+            </ul></dd>
+        </dl>
+        <div class="result">
+          <p>带队赴江西多家医院现场交付，完成系统部署、软硬件对接和科室培训，产品进入实际临床使用。</p>
+        </div>
+      </article>
+
+      <article class="project" id="project-4">
+        <div class="project-head">
+          <h3>DataSphere · 碳中和 AI 数据分析系统</h3>
+          <div class="project-actions">
+            <a class="action-link" href="https://www.figma.com/design/csShMRcUyxct0xNAXYtyh5/%E7%8E%AF%E5%A2%83%E6%8A%A5%E5%91%8A%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F?m=auto&amp;t=KZoWb72OWJDHNLY4-6" target="_blank" rel="noopener noreferrer">查看原型 <span class="go" aria-hidden="true">↗</span></a>
+            <a class="action-link" href="https://my.feishu.cn/base/UrSpbtvB1a78kmspKnzcO2wln1d" target="_blank" rel="noopener noreferrer">查看 PRD <span class="go" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <p class="project-role">产品经理 / Agent 开发者 · 负责产品方案及数据处理 Agent 开发，设计报告解析、指标比对和异常预警流程</p>
+        <dl>
+          <dt>背景</dt>
+          <dd>工厂报告制式不一，数据提取与历史核对繁琐，异常指标难以快速识别。</dd>
+          <dt>方案</dt>
+          <dd><ul class="bullets">
+              <li>使用 Qwen3 开源模型与 Dify，从不同制式的质量检测报告中提取结构化数据。</li>
+              <li>对接历史数据做指标比对，对日 / 月度报表交叉核验，识别可疑指标并触发预警。</li>
+            </ul></dd>
+        </dl>
+        <div class="result">
+          <div class="kpi"><b>1 人天 → 10 分钟</b><span>每周人工投入</span></div>
+          <p>数据整理与核验转为 AI 自动处理、人工复核，人工时间主要用于核对 AI 产出。</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="practice">
+      <div class="sec-head has-action"><h2>其他项目与实践</h2><span class="en">More Projects</span><span class="sec-line"></span><button class="expand-btn" type="button" id="toggle-practice" aria-expanded="false" hidden>展开全部 9 项 ＋</button></div>
+      <div class="practice" id="practice-list">
+        <div class="practice-item" data-category="ai">
+          <h3>MCP Hub / Skill Hub <small>云享智慧</small></h3>
+          <p>梳理搜索引擎业务数百个工具接口，形成 36 类业务 MCP Server；推进工具封装与接入验证，设计统一入口、身份映射及权限流程，支持 Agent 复用搜索业务能力。</p><div class="project-links" aria-label="项目相关链接"><a href="https://mcp-server.applesay.cn/" target="_blank" rel="noopener noreferrer">查看 MCP Hub <span aria-hidden="true">↗</span></a><a href="http://skillhub.applesay.cn/" target="_blank" rel="noopener noreferrer">查看 Skill Hub <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="practice-item" data-category="ai">
+          <h3>医疗咨询 Workflow <small>上海元长</small></h3>
+          <p>用 Dify 搭建快速健康建档、门诊 / 住院派单策略、陪诊人员沟通与审核、财务审核、招聘信息提取及数据分析工具。</p>
+          <p class="link"><a href="https://github.com/ZhangGM-China/Dfiy_workflow" target="_blank" rel="noopener">GitHub · Dfiy_workflow ↗</a></p>
+        </div>
+        <div class="practice-item" data-category="ai">
+          <h3>个人知识库 <small>个人</small></h3>
+          <p>基于 Karpathy 的理念，结合 Obsidian 与 Codex 管理原始资料与个人 Wiki。</p>
+          <p class="link"><a href="https://github.com/ZhangGM-China/Second-Brain" target="_blank" rel="noopener">GitHub · Second-Brain ↗</a></p>
+        </div>
+        <div class="practice-item" data-category="ai">
+          <h3>AI 招聘助手 <small>上海元长</small></h3>
+          <p>结合 AI 与 Tampermonkey 脚本，开发候选人筛选及沟通辅助工具。</p>
+          <p class="link"><a href="https://github.com/ZhangGM-China/Boss-Recruitment-Assistant" target="_blank" rel="noopener">GitHub · Boss-Recruitment-Assistant ↗</a></p>
+        </div>
+        <div class="practice-item" data-category="ai">
+          <h3>AIGC 产品<small>上海元长</small></h3>
+          <p>负责大千智言、爻塔 AI 伴侣、借问排盘等产品的设计与研发推进，覆盖 AI 对话与陪伴等应用场景。</p>
+          <div class="project-links" aria-label="项目相关链接"><a href="https://daqian.yaotakeji.com/" target="_blank" rel="noopener noreferrer">查看大千智言 <span aria-hidden="true">↗</span></a><a href="https://www.figma.com/design/IL7sS019KHAxsUDa134MiS/AIGC?node-id=0-1&amp;t=yaRXbQ5iaAwWiIar-1" target="_blank" rel="noopener noreferrer">查看大千智言原型 <span aria-hidden="true">↗</span></a><a href="https://www.figma.com/design/QBGgwJLiga6vuY7B65yP5a/%E5%85%B6%E4%BB%96AI%E4%BA%A7%E5%93%81?node-id=0-1&amp;t=hI8RUEqsT0eq10VM-1" target="_blank" rel="noopener noreferrer">查看其他 AI 产品原型 <span aria-hidden="true">↗</span></a></div>
+          <p class="access-hint">借问排盘 App：在手机应用市场搜索「借问」。</p>
+        </div>
+        <div class="practice-item" data-category="saas">
+          <h3>云数享营销自动化平台<small>上海坤鼎云</small></h3>
+          <p>主导营销自动化 SaaS 的产品设计、项目管理与运营，将公众号管理、互动营销 H5 和图文直播沉淀为可复用功能。</p>
+          <div class="project-links" aria-label="项目相关链接"><a href="https://www.dgshare.com/user/login" target="_blank" rel="noopener noreferrer">查看云数享平台 <span aria-hidden="true">↗</span></a><a href="https://www.figma.com/design/wlnOEDSZKNUAZyDUytgk23/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%8A%A9%E6%89%8B?node-id=0-1&amp;t=8MXKSyKg2th3kiT5-1" target="_blank" rel="noopener noreferrer">查看公众号助手原型 <span aria-hidden="true">↗</span></a><a href="https://my.feishu.cn/docx/GQNNdvMZxoEBFGxAYJ5cQzTGn6c" target="_blank" rel="noopener noreferrer">查看云数享 PRD <span aria-hidden="true">↗</span></a></div>
+          
+        </div>
+        <div class="practice-item" data-category="mobile">
+          <h3>商场与品牌移动端产品<small>上海坤鼎云</small></h3>
+          <p>对接百联股份及旗下商场、上海市商委、艾尔建等客户，负责上海购物 App、品牌小程序及营销 H5 的需求沟通、产品设计与交付。</p>
+          
+          <p class="access-hint">上海购物 App：在应用市场搜索「上海购物」；商场小程序可在微信搜索对应商场名称。</p>
+        </div>
+        <div class="practice-item" data-category="saas">
+          <h3>互亿无线短信平台<small>互亿无线</small></h3>
+          <p>负责短信平台迭代、需求文档与原型设计，结合业务数据优化产品，并推进本机号码校验、5G 短信等通信服务接入。</p>
+          <div class="project-links" aria-label="项目相关链接"><a href="https://www.ihuyi.com/" target="_blank" rel="noopener noreferrer">查看互亿无线官网 <span aria-hidden="true">↗</span></a></div>
+          
+        </div>
+        <div class="practice-item" data-category="mobile">
+          <h3>永久共享单车平台<small>上海永久</small></h3>
+          <p>协助共享单车管理平台与用户端 App 的规划迭代，收集用户反馈、输出需求和原型，协调运营、设计、研发及算法团队推动落地。</p>
+          
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="sec-head"><h2>作品合集</h2><span class="en">Collections</span></div>
+      <div class="collections">
+        <a class="collection-card" href="https://my.feishu.cn/drive/folder/JwGEfBJ6sli4lFd1R00cniXWnxh" target="_blank" rel="noopener noreferrer"><span class="collection-type">DOCUMENTS</span><h3>PRD / BRD 文档合集<span aria-hidden="true">↗</span></h3><p>产品需求、商业需求、市场调研与项目管理文档。</p><span class="collection-action">查看合集 <span aria-hidden="true">→</span></span></a>
+        <a class="collection-card" href="https://www.figma.com/files/project/50765473" target="_blank" rel="noopener noreferrer"><span class="collection-type">SAAS PROTOTYPES</span><h3>SaaS 产品原型<span aria-hidden="true">↗</span></h3><p>后台管理系统、营销自动化平台与 CRM 等产品设计。</p><span class="collection-action">查看合集 <span aria-hidden="true">→</span></span></a>
+        <a class="collection-card" href="https://www.figma.com/files/project/71820923" target="_blank" rel="noopener noreferrer"><span class="collection-type">MOBILE PROTOTYPES</span><h3>移动端产品原型<span aria-hidden="true">↗</span></h3><p>App、小程序与 H5 的界面及交互设计。</p><span class="collection-action">查看合集 <span aria-hidden="true">→</span></span></a>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="sec-head"><h2>教育经历</h2><span class="en">Education</span></div>
+      <div class="edu">
+        <div class="edu-item">
+          <div class="time">2022 — 2025</div>
+          <div><b>江苏开放大学</b><span>本科 · 行政管理</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="time">2014 — 2017</div>
+          <div><b>上海政法学院</b><span>大专 · 公共事务管理</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="copy-status" id="copy-status" role="status" aria-live="polite"></div>
+  <script>
+(() => {
+  const notice = document.querySelector('#copy-status');
+  const navLinks = [...document.querySelectorAll('.topbar nav a')];
+  const sections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
+  let noticeTimer;
+  let pendingFrame = false;
+
+  document.querySelectorAll('.copy-btn').forEach(button => { button.hidden = false; });
+
+  document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', async () => {
+      clearTimeout(noticeTimer);
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        notice.textContent = `${button.getAttribute('aria-label').replace('复制', '')}已复制`;
+      } catch {
+        // 本地预览可能禁用剪贴板权限，此时改为选中文字供手动复制。
+        const range = document.createRange();
+        range.selectNodeContents(button.previousElementSibling);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        notice.textContent = '浏览器未允许自动复制，已选中文字，请按 Ctrl/Cmd+C 复制';
+      }
+      noticeTimer = setTimeout(() => { notice.textContent = ''; }, 4500);
+    });
+  });
+
+  function syncNavigation() {
+    pendingFrame = false;
+    const threshold = document.querySelector('.topbar').getBoundingClientRect().height + 50;
+    let current = null;
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= threshold) current = section;
+    });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5) current = sections[sections.length - 1];
+    navLinks.forEach(link => {
+      if (current && link.getAttribute('href') === `#${current.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  function scheduleNavigation() {
+    if (!pendingFrame) { pendingFrame = true; requestAnimationFrame(syncNavigation); }
+  }
+  window.addEventListener('scroll', scheduleNavigation, { passive: true });
+  window.addEventListener('resize', scheduleNavigation);
+
+  const extraPractice = [...document.querySelectorAll('#practice-list .practice-item')].slice(4);
+  const practiceToggle = document.querySelector('#toggle-practice');
+  if (extraPractice.length && practiceToggle) {
+    const totalPractice = extraPractice.length + 4;
+    extraPractice.forEach(item => { item.hidden = true; });
+    practiceToggle.hidden = false;
+    const syncPracticeToggle = () => {
+      const expanded = extraPractice.every(item => !item.hidden);
+      practiceToggle.textContent = expanded ? '收起 －' : `展开全部 ${totalPractice} 项 ＋`;
+      practiceToggle.setAttribute('aria-expanded', String(expanded));
+    };
+    practiceToggle.addEventListener('click', () => {
+      const expand = extraPractice.some(item => item.hidden);
+      extraPractice.forEach(item => { item.hidden = !expand; });
+      syncPracticeToggle();
+    });
+    syncPracticeToggle();
+  }
+
+  document.querySelector('#print-resume').addEventListener('click', () => window.print());
+  syncNavigation();
+})();
+</script>
 </body>
 </html>
