@@ -87,8 +87,11 @@
       padding: 4px 12px;
       cursor: pointer;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
     }
-    .print-btn:hover { border-color: var(--ink-3); }
+    .print-btn:hover { border-color: var(--ink-3); text-decoration: none; }
 
     /* 纸面 */
     .sheet {
@@ -506,17 +509,17 @@
     @page { size: A4; margin: 14mm; }
 
     @media print {
-      body { background: #fff; font-size: 10pt; line-height: 1.6; }
+      body { background: #fff; font-size: 10pt; line-height: 1.6; orphans: 3; widows: 3; }
       .topbar { display: none; }
       .sheet { margin: 0; padding: 0; border: none; max-width: none; }
-      section { padding-top: 22pt; }
+      section { padding-top: 20pt; }
       .sec-head { margin-bottom: 12pt; break-after: avoid; }
-      .hero, .metrics, .strength-group, .tool-rows, .edu-item { break-inside: avoid; }
+      .hero, .metrics, .strength-group, .tool-rows, .edu-item, .result { break-inside: avoid; }
       .hero { padding-bottom: 18pt; }
       .metric { padding-top: 12pt; padding-bottom: 12pt; }
       .project { padding: 14pt 16pt; margin-bottom: 10pt; }
       .job { padding: 10pt 0; break-inside: avoid; }
-      .result, .tag, .practice-item, .action-link { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .result, .tag, .practice-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -524,10 +527,9 @@
     }
     @media print {
       .copy-btn, .copy-status, .skip-link, .expand-btn { display: none !important; }
+      /* 外链在 PDF 中无法点击，整块隐藏 */
+      .project-actions, .project-links, .practice-item .link, #works { display: none !important; }
       #practice-list [hidden] { display: block !important; }
-      .project-links { font-size: 8pt; margin-top: 10pt; padding-top: 8pt; }
-      .collection-card { break-inside: avoid; padding: 12pt; }
-      .collections { grid-template-columns: repeat(3,minmax(0,1fr)); }
       .metric b.capability { font-size: 15pt; }
     }
 
@@ -546,7 +548,7 @@
         <a href="#works">作品合集</a>
         <a href="#education">教育经历</a>
       </nav>
-      <button class="print-btn" type="button" id="print-resume">导出 PDF</button>
+      <a class="print-btn" href="./resume.pdf" download="章光敏-产品经理.pdf" title="下载不含浏览器页眉页脚的 PDF">导出 PDF</a>
     </div>
   </header>
 
@@ -589,7 +591,7 @@
           <ul class="strength-list">
             <li><b>Vibe Coding</b><span>以 Codex、PI 为主力工具，独立完成智能运营与 AI 搜索产品从设计、开发、部署到迭代的全流程。</span></li>
             <li><b>Agent 研发</b><span>基于 LangChain、RAG 构建智能体应用，具备 Prompt、Context、Harness 工程经验，并用 Langfuse 评估效果。</span></li>
-            <li><b>熟悉 AI 基础生态</b><span>有推进传统业务接口 MCP 化、CLI 化，并基于 PI、OpenClaw、Hermes 搭建数字员工的经验。</span></li>
+            <li><b>了解 AI 基础生态</b><span>有推进传统业务接口 MCP 化、CLI 化，并基于 PI、OpenClaw、Hermes 搭建数字员工的经验。</span></li>
           </ul>
         </div>
       </div>
@@ -698,7 +700,7 @@
       <article class="project" id="project-1">
         <div class="project-head">
           <h3>AIOPS · 零售搜索智能运营平台</h3>
-          <div class="project-actions"><a class="action-link" href="https://soa.applesay.tech/ops-dashboard" target="_blank" rel="noopener noreferrer">查看产品 <span class="go" aria-hidden="true">↗</span></a></div>
+          <div class="project-actions"><a class="action-link" href="https://soa.applesay.tech/ops-dashboard" target="_blank" rel="noopener noreferrer">查看产品 <span class="go" aria-hidden="true">↗</span></a><a class="action-link" href="https://github.com/ZhangGM-China/search-ops-automation" target="_blank" rel="noopener noreferrer">查看源码 <span class="go" aria-hidden="true">↗</span></a></div>
         </div>
         <p class="project-role">AI 产品经理 / Agent 工程师 · 负责产品设计与项目研发，推进需求梳理、开发验证和上线迭代</p>
         <dl>
@@ -939,7 +941,6 @@
     syncPracticeToggle();
   }
 
-  document.querySelector('#print-resume').addEventListener('click', () => window.print());
   syncNavigation();
 })();
 </script>
